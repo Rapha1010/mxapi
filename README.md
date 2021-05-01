@@ -13,7 +13,7 @@ Heroku : https://rapha-mxapi.herokuapp.com/
 Adicionar
 url : https://rapha-mxapi.herokuapp.com/mxapi/adicionar
 
-![alt text](https://raw.githubusercontent.com/Rapha1010/mxapi/main/imgreadme/adicionar.PNG?token=ADU5I64HQUT27IAEZTEIGQ3ARV2CS)
+![alt text](https://github.com/Rapha1010/mxapi/blob/main/imgreadme/adicionar.PNG?raw=true)
 
 Listar 
 url : https://rapha-mxapi.herokuapp.com/mxapi/listar
