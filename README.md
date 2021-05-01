@@ -1,6 +1,6 @@
 # mxapi
 
-Heroku : https://rapha-mxapi.herokuapp.com/
+🌟 Heroku : https://rapha-mxapi.herokuapp.com/
 
 | EndPoint  | Método | Ação |
 | --------------- | --------------- | --------------- |
@@ -10,24 +10,22 @@ Heroku : https://rapha-mxapi.herokuapp.com/
 | /mxapi/editar/8.00b3/terminal/44332211| PUT | Edita usando versao e logic |
 
 
-Adicionar
+👉🏼 Adicionar
 url : https://rapha-mxapi.herokuapp.com/mxapi/adicionar
 
 ![alt text](https://github.com/Rapha1010/mxapi/blob/main/imgreadme/adicionar.PNG?raw=true)
 
-Listar 
+👉🏼 Listar 
 url : https://rapha-mxapi.herokuapp.com/mxapi/listar
 
 ![alt text](https://github.com/Rapha1010/mxapi/blob/main/imgreadme/listar.PNG?raw=true)
 
-Buscar no padrão (Versão/Terminal/Logic)
+👉🏼 Buscar no padrão (Versão/Terminal/Logic)
 url: https://rapha-mxapi.herokuapp.com/mxapi/buscar/8.00b3/terminal/44332211
 
 ![alt text](https://github.com/Rapha1010/mxapi/blob/main/imgreadme/buscar.PNG?raw=true)
 
-Editar no padrão (Versão/Terminal/Logic)
+👉🏼 Editar no padrão (Versão/Terminal/Logic)
 url : https://rapha-mxapi.herokuapp.com/mxapi/editar/8.00b3/terminal/44332211
 
 ![alt text](https://github.com/Rapha1010/mxapi/blob/main/imgreadme/editar.PNG?raw=true)
-
-Documento formal: https://docs.google.com/document/d/1WCYefuV9f1aRFpegjMHM0yFDq3Fsiaou6t_uVz9lh-0/edit?usp=sharing
