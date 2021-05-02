@@ -31,7 +31,7 @@ public class TerminalController {
 	}
 	
 	@GetMapping("buscar/{version}/terminal/{logic}")
-	public ResponseEntity<Terminal>  busca(@PathVariable("logic") long logic,@PathVariable("version") String version) {
+	public ResponseEntity<Terminal> buscar(@PathVariable("logic") long logic,@PathVariable("version") String version) {
 		
 		Terminal terminal = tr.findByAnyVariable(logic, version);
 		
@@ -68,7 +68,7 @@ public class TerminalController {
 	}
 	
 	@PutMapping("editar/{version}/terminal/{logic}")
-	public ResponseEntity<Terminal> editContatoPost(@RequestBody Terminal newTerminal, @PathVariable("logic") long logic,@PathVariable("version") String version) {
+	public ResponseEntity<Terminal> editar(@RequestBody Terminal newTerminal, @PathVariable("logic") long logic,@PathVariable("version") String version) {
 		
 		Terminal terminal = tr.findByAnyVariable(logic, version);
 		
@@ -81,7 +81,7 @@ public class TerminalController {
 	}
 	
 	@DeleteMapping
-	public ResponseEntity<Void> deleteContato() {
+	public ResponseEntity<Void> deletar() {
 		return ResponseEntity.notFound().build();
 	}
 	
