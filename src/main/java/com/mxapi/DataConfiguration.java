@@ -16,7 +16,8 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
 public class DataConfiguration {
-	
+
+//	postgres
 	  @Bean
 	    public BasicDataSource dataSource() throws URISyntaxException {
 	        URI dbUri = new URI(System.getenv("DATABASE_URL"));

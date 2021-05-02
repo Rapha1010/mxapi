@@ -31,11 +31,13 @@ public class TerminalController {
 	}
 	
 	@GetMapping("buscar/{version}/terminal/{logic}")
-	public ResponseEntity<Terminal> buscar(@PathVariable("logic") long logic,@PathVariable("version") String version) {
+	public ResponseEntity<Iterable<Terminal>> buscar(@PathVariable("logic") long logic, @PathVariable("version") String version) {
 		
-		Terminal terminal = tr.findByAnyVariable(logic, version);
+		if (logic <= 0 || version.trim().isEmpty()) return ResponseEntity.status(204).build();
 		
-		if (terminal == null) return ResponseEntity.status(404).build();
+		Iterable<Terminal> terminal = tr.findAllByAnyVariablet(logic, version.trim());
+		
+		if (terminal == null) return ResponseEntity.status(204).build();
 		
 		return ResponseEntity.ok(terminal);
 	}
@@ -43,24 +45,30 @@ public class TerminalController {
 	@PostMapping("adicionar")
 	public ResponseEntity<Terminal> adicionar(Terminal newTerminal,  @RequestBody String body) {
 		
+		if (body.trim().isEmpty()) return ResponseEntity.status(204).build();
+		
 		String[] arrBody = body.split(";");
 		
+		if (arrBody.length < 10) return ResponseEntity.status(204).build();
+		
 		//required ["logic", "serial", "model", "version"]
-		if (arrBody[1].trim().isEmpty() || arrBody[0].trim().isEmpty()) return ResponseEntity.notFound().build();
-		if (arrBody[2].trim().isEmpty() || arrBody[6].trim().isEmpty()) return ResponseEntity.notFound().build();
-
-		newTerminal.setLogic(Integer.parseInt(arrBody[0]));
+		if (arrBody[1].trim().isEmpty() || arrBody[0].trim().isEmpty()) return ResponseEntity.status(204).build();
+		if (arrBody[2].trim().isEmpty() || arrBody[6].trim().isEmpty()) return ResponseEntity.status(204).build();
+		
+		newTerminal.setLogic(Integer.parseInt(arrBody[0].trim()));
+		
 		newTerminal.setSerial(arrBody[1]);
 		newTerminal.setModel(arrBody[2]);
-		newTerminal.setSam(Integer.parseInt(arrBody[3]));
-		newTerminal.setPtid(arrBody[4]);
-		newTerminal.setPlat(Integer.parseInt(arrBody[5]));
 		newTerminal.setVersion(arrBody[6]);
-		newTerminal.setMxr(Integer.parseInt(arrBody[7]));
-		newTerminal.setMxf(Integer.parseInt(arrBody[8]));
-		newTerminal.setVerfm(arrBody[9]);
 		
-		Terminal terminal = tr.findByLogic(newTerminal.getLogic());
+		if (!arrBody[3].trim().isEmpty()) { newTerminal.setSam(Integer.parseInt(arrBody[3].trim()));}
+		if (!arrBody[4].trim().isEmpty()) { newTerminal.setPtid(arrBody[4]); }
+		if (!arrBody[5].trim().isEmpty()) { newTerminal.setPlat(Integer.parseInt(arrBody[5].trim())); }
+		if (!arrBody[7].trim().isEmpty()) { newTerminal.setMxr(Integer.parseInt(arrBody[7].trim())); }
+		if (!arrBody[8].trim().isEmpty()) { newTerminal.setMxf(Integer.parseInt(arrBody[8].trim())); }
+		if (!arrBody[9].trim().isEmpty()) { newTerminal.setVerfm(arrBody[9]); }
+		
+		Terminal terminal = tr.findByAnyVariable(newTerminal.getLogic(), newTerminal.getVersion());
 		
 		if (terminal == null) return ResponseEntity.ok(tr.save(newTerminal));
 		
@@ -68,11 +76,18 @@ public class TerminalController {
 	}
 	
 	@PutMapping("editar/{version}/terminal/{logic}")
-	public ResponseEntity<Terminal> editar(@RequestBody Terminal newTerminal, @PathVariable("logic") long logic,@PathVariable("version") String version) {
+	public ResponseEntity<Terminal> editar(@RequestBody Terminal newTerminal, @PathVariable("logic") long logicPath,@PathVariable("version") String versionPath) {
+		
+		if (logicPath <= 0 || versionPath.trim().isEmpty()) return ResponseEntity.status(204).build();
+		
+		long logic = newTerminal.getLogic();
+		String version = newTerminal.getVersion();
+		
+		if(logic != logicPath && version != versionPath)  return ResponseEntity.status(204).build();
 		
 		Terminal terminal = tr.findByAnyVariable(logic, version);
 		
-		if (terminal == null) return ResponseEntity.status(404).build();
+		if (terminal == null) return ResponseEntity.status(204).build();
 		
 		BeanUtils.copyProperties(newTerminal, terminal,"id");
 		
@@ -82,7 +97,7 @@ public class TerminalController {
 	
 	@DeleteMapping
 	public ResponseEntity<Void> deletar() {
-		return ResponseEntity.notFound().build();
+		return ResponseEntity.status(404).build();
 	}
 	
 

@@ -9,8 +9,11 @@ import com.mxapi.modals.Terminal;
 @Repository("terminalRepository")
 public interface TerminalRepository extends CrudRepository<Terminal, Long>{
 	
-	@Query("select t from Terminal t where 1=1 and ( t.logic = ?1 and t.version = ?2 ) ")
+	@Query("select t from Terminal t where 1=1 and ( t.logic = ?1 and t.version = ?2) ")
 	Terminal findByAnyVariable(long logic, String version);
+	
+	@Query("select t from Terminal t where 1=1 and (t.logic = ?1 and t.version = ?2) ")
+	Iterable<Terminal> findAllByAnyVariablet(long logic, String version);
 	
 	Terminal findByLogic(long logic);
 	
