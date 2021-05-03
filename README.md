@@ -1,6 +1,6 @@
 # mxapi
 
-🌟 Heroku : https://rapha-mxapi.herokuapp.com/
+🌟 Heroku : https://rapha-mxapi.herokuapp.com/mxapi/listar
 
 | EndPoint  | Método | Ação |
 | --------------- | --------------- | --------------- |
