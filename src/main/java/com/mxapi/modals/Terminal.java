@@ -26,6 +26,26 @@ public class Terminal {
 	private Integer mxr;
 	private Integer mxf;
 	private String verfm;
+	
+	public Terminal() {
+	}
+	
+	public Terminal(long id, @NotEmpty long logic, @NotEmpty String serial, @NotEmpty String model, Integer sam,
+			String ptid, Integer plat, @NotEmpty String version, Integer mxr, Integer mxf, String verfm) {
+		super();
+		this.id = id;
+		this.logic = logic;
+		this.serial = serial;
+		this.model = model;
+		this.sam = sam;
+		this.ptid = ptid;
+		this.plat = plat;
+		this.version = version;
+		this.mxr = mxr;
+		this.mxf = mxf;
+		this.verfm = verfm;
+	}
+
 	public long getId() {
 		return id;
 	}
